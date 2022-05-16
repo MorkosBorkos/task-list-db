@@ -1,0 +1,12 @@
+span[data-task-id] {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+span[data-task-id].task-status-inactive {
+    text-decoration: line-through;
+}
+
+span[data-task-id].task-disabled {
+    color: gainsboro;
+}
