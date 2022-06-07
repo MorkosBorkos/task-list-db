@@ -8,7 +8,7 @@ const client = new Client({
     database: "ddanb7168cgnrj",
     port: 5432,
     host: "ec2-63-32-248-14.eu-west-1.compute.amazonaws.com",
-    ssl: true
+    ssl: { rejectUnauthorized: false }
 });
 
 client.connect((err) => {
