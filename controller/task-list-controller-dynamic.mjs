@@ -12,21 +12,19 @@
  * και αυτόν εδώ τον controller. Σαν παράδειγμα έχει οριστεί το /viewtasks
  * 
  */
+import dotenv from 'dotenv'
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config();
+}
 
-'use strict';
-const task = require('../model/task.js')
+import task from '../model/task.js'
+
+/** Διαλέξτε το κατάλληλο μοντέλο στο αρχείο .env */
+let model;
+model = await import(`../model/${process.env.MODEL}/task-list-model-${process.env.MODEL}.mjs`)
 
 
-/** Διαλέξτε το κατάλληλο μοντέλο */
-const model = require('../model/sqlite/task-list-model-better-sqlite.js');
-// const model = require('../model/mongo/task-list-model-mongo.js');
-// const model = require('../model/postgres/task-list-model-heroku-pg.js');
-
-// const model = require('../model/mongo-only/task-list-model-mongo-only.js'); //TODO
-// const model = require('../model/task-list-model-mysql.js'); //TODO
-// const model = require('../model/task-list-model-no-db.js'); //TODO
-
-exports.toggleTask = (req, res) => {
+export function toggleTask(req, res) {
     model.toggleTask(req.params.toggleTaskId, req.session.loggedUserId, (err, result) => {
         if (err) {
             res.json(err)
@@ -38,7 +36,7 @@ exports.toggleTask = (req, res) => {
     });
 }
 
-exports.addTask = (req, res, callback) => {
+export function addTask(req, res) {
     //Κατασκευάζουμε μια νέα εργασία και τη βάζουμε στην βάση:
     // req.query.taskName -> { taskName: "Να τελειώσω την άσκηση"}
     const newTask = new task.Task(null, req.params.taskName);
@@ -65,7 +63,7 @@ exports.addTask = (req, res, callback) => {
     });
 }
 
-exports.removeTask = (req, res) => {
+export function removeTask(req, res) {
     model.removeTask(req.params.removeTaskId, req.session.loggedUserId, (err, result) => {
         //αν υπάρχει σφάλμα, σταμάτα
         if (err) {
@@ -79,7 +77,7 @@ exports.removeTask = (req, res) => {
 }
 
 //Επιστρέφει ένα json array που περιέχει όλες τις εργασίες
-exports.getAllTasks = (req, res) => {
+export function getAllTasks(req, res) {
     model.getAllTasks(req.session.loggedUserId, (err, tasks) => {
         if (err) {
             res.json(err);
@@ -92,7 +90,7 @@ exports.getAllTasks = (req, res) => {
 
 //Επιστρέφει το HTML της τελικής σελίδας
 //Χρήσιμο για την 1η φορά που ο φυλλομετρητής φορτώνει τη σελίδα
-exports.listAllTasksRender = (req, res) => {
+export function listAllTasksRender(req, res) {
     res.render('tasks-dynamic');
     // Θα μπορούσαμε στο 1ο φόρτωμα να επιστρέφουμε έτοιμο το ul με τα tasks
     // model.getAllTasks(req.session.loggedUserId, (err, tasks) => {

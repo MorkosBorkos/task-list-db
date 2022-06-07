@@ -8,26 +8,16 @@
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
             "name": "nodemon",
-            "program": "${workspaceFolder}/${relativeFile}",
+            "program": "${workspaceFolder}/start.mjs",
             "request": "launch",
             "restart": true,
             "runtimeExecutable": "nodemon",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "type": "pwa-node"
+            "type": "node"
         },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Nodemon attach",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "restart": false,
-            "protocol": "inspector",
-            "port": 9229
-        },
+       
         {
             "name": "Firefox attach",
             "type": "firefox",

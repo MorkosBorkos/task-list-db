@@ -131,11 +131,11 @@ let renderTaskItems = (json) => {
 
 //Στέλνει ένα αίτημα στον εξυπηρετητή και επιστρέφει τις εργασίες
 let fetchTasks = () => {
-    fetch("/tasks").then(
+    fetch("/tasks/getAllTasks").then(
         //διάβασε την απάντηση σαν json
         (response) => response.json().then(
             //δώσε την εγγραφή "tasks" για προβολή στην οθόνη
-            (json) => renderTaskItems(json)
+            (json) =>{console.log(json); renderTaskItems(json)}
         )
     );
 }
