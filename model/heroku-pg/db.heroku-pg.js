@@ -1,13 +1,13 @@
 'use strict';
 
 const { Client } = require('pg');
-// postgres://dhzfsoszoiqlis:dce5ca1cfd5a0918ff13e468db9b88d96057bb9881a7aef85b0b57e998a9ba89@ec2-54-243-92-68.compute-1.amazonaws.com:5432/d3po9r81s8qfib
+//    postgres://igyarmltcjtqmf:179ba1800d084184ed8ec152b0884c965f1d1b2a7b7d3ae7759cf7d4ad24aca5@ec2-63-32-248-14.eu-west-1.compute.amazonaws.com:5432/ddanb7168cgnrj
 const client = new Client({
-    user: "dhzfsoszoiqlis",
-    password: "dce5ca1cfd5a0918ff13e468db9b88d96057bb9881a7aef85b0b57e998a9ba89",
-    database: "c2-54-243-92-68",
+    user: "igyarmltcjtqmf",
+    password: "179ba1800d084184ed8ec152b0884c965f1d1b2a7b7d3ae7759cf7d4ad24aca5",
+    database: "ddanb7168cgnrj",
     port: 5432,
-    host: "compute-1.amazonaws.com",
+    host: "c2-63-32-248-14.eu-west-1.compute.amazonaws.com",
     ssl: true
 });
 
